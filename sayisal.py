@@ -33,55 +33,65 @@ def orijinal_ses():
     plt.show()
 
 def azaltma():
-    M = 2
-    azaltılmış_veri = decimate(veri, M)
-    sd.play(azaltılmış_veri, fs // M)
+    M = 2  # Örnekleme azaltma faktörü
+    azaltilmis_veri = decimate(veri, M)  # Veriyi örnekleme oranı ile azalt
+    
+    # Yeni örnekleme frekansını hesapla
+    
+    # Azaltılmış sesin çalınması
+    print("Azaltılmış ses çalıyor...")
+    sd.play(azaltilmis_veri, fs)
     sd.wait()
-    zaman_azaltılmış = np.linspace(0, len(azaltılmış_veri) / (fs // M), num=len(azaltılmış_veri)) #fs // M fs'yi M'e sonuç tam sayı olacak şekilde böler. M 2 olduğundan zaman yarıya düşer ve ses incelir
+
+    # Zaman dizisini oluştur
+    zaman_azaltilmis = np.linspace(0, len(azaltilmis_veri) / (fs//M), num=len(azaltilmis_veri))
+    
+    # Grafik çizimi
     plt.figure(figsize=(10, 4))
-    plt.plot(zaman_azaltılmış, azaltılmış_veri)
-    plt.title(f"Örnek Sayısı Azaltılmış (Örnek Sayısı: {len(azaltılmış_veri)}, F(s) = {fs // M} Hz)")
+    plt.plot(zaman_azaltilmis, azaltilmis_veri)
+    plt.title(f"Örnek Sayısı Azaltılmış Ses Dalga Formu (Örnek Sayısı: {len(azaltilmis_veri)}, F(s) = {fs//M} Hz)")
     plt.xlabel("Zaman (saniye)")
     plt.ylabel("Genlik")
     plt.show()
 
-def M_ile_azaltılmış():
+
+
+
+def M_ile_azaltilmis():
     M = 2
-    azaltılmış_veri = decimate(veri, M)
-    yeni_fs = fs // M #yeni fs tanımlanır örnek sayısı ve fs azaltılır fakat ses değişmez
-    zaman_azaltılmış = np.linspace(0, len(azaltılmış_veri) / yeni_fs, num=len(azaltılmış_veri))
-    sd.play(azaltılmış_veri, yeni_fs)
+    azaltilmis_veri = decimate(veri, M) 
+    zaman_azaltilmis = np.linspace(0, len(azaltilmis_veri) / (fs//M), num=len(azaltilmis_veri))
+    sd.play(azaltilmis_veri, fs)
     sd.wait()
     plt.figure(figsize=(10, 4))
-    plt.plot(zaman_azaltılmış, azaltılmış_veri)
-    plt.title(f"Örnekleme Frekansı Azaltılmış (Örnek Sayısı: {len(azaltılmış_veri)}, F(s) = {yeni_fs} Hz)")
+    plt.plot(zaman_azaltilmis, azaltilmis_veri)
+    plt.title(f"Örnekleme Frekansı Azaltılmış (Örnek Sayısı: {len(azaltilmis_veri)}, F(s) = {(fs//M)} Hz)")
     plt.xlabel("Zaman (saniye)")
     plt.ylabel("Genlik")
     plt.show()
 
-def ornek_arttırma_L():
+def ornek_arttirma_L():
     L = 2
-    artırılmış_veri = resample(veri, len(veri) * L)
-    sd.play(artırılmış_veri, fs)
+    arttirilmis_veri = resample(veri, len(veri) * L) #L ile çarpılarak örnek arttırılır
+    sd.play(arttirilmis_veri, fs)
     sd.wait()
-    zaman_arttırılmış = np.linspace(0, len(artırılmış_veri) / fs, num=len(artırılmış_veri))
+    zaman_arttırılmış = np.linspace(0, len(arttirilmis_veri) / fs, num=len(arttirilmis_veri))
     plt.figure(figsize=(10, 4))
-    plt.plot(zaman_arttırılmış, artırılmış_veri)
-    plt.title(f"Örnek Sayısı Artırılmış (Örnek Sayısı: {len(artırılmış_veri)}, F(s) = {fs} Hz)")
+    plt.plot(zaman_arttırılmış, arttirilmis_veri)
+    plt.title(f"Örnek Sayısı Artırılmış (Örnek Sayısı: {len(arttirilmis_veri)}, F(s) = {(fs*L)} Hz)")
     plt.xlabel("Zaman (saniye)")
     plt.ylabel("Genlik")
     plt.show()
 
 def fs_ile_arttirma():
     L = 2
-    artırılmış_veri = resample_poly(veri, L, 1)
-    yeni_fs = fs * L #Örnek sayısı arttırılır ve ses kalınlaşır
-    sd.play(artırılmış_veri, yeni_fs)
+    arttirilmis_veri = resample_poly(veri, L, 1)
+    sd.play(arttirilmis_veri, fs) #Örnek sayısı arttırılır ve ses kalınlaşır
     sd.wait()
-    zaman_arttırılmış = np.linspace(0, len(artırılmış_veri) / yeni_fs, num=len(artırılmış_veri))
+    zaman_arttırılmış = np.linspace(0, len(arttirilmis_veri) / fs, num=len(arttirilmis_veri))
     plt.figure(figsize=(10, 4))
-    plt.plot(zaman_arttırılmış, artırılmış_veri)
-    plt.title(f"Örnekleme Frekansı Artırılmış (Örnek Sayısı: {len(artırılmış_veri)}, F(s) = {yeni_fs} Hz)")
+    plt.plot(zaman_arttırılmış, arttirilmis_veri)
+    plt.title(f"Örnekleme Frekansı Artırılmış (Örnek Sayısı: {len(arttirilmis_veri)}, F(s) = {(fs*L)} Hz)")
     plt.xlabel("Zaman (saniye)")
     plt.ylabel("Genlik")
     plt.show()
@@ -95,7 +105,7 @@ def ornek_orani_degisimi_M_L():
     zaman_oranli = np.linspace(0, len(oranli_veri) / fs, num=len(oranli_veri))
     plt.figure(figsize=(10, 4))
     plt.plot(zaman_oranli, oranli_veri)
-    plt.title(f"Örnek Oranı Değişmiş (Örnek Sayısı: {len(oranli_veri)}, F(s) = {fs} Hz)")
+    plt.title(f"Örnek Oranı Değişmiş (Örnek Sayısı: {len(oranli_veri)}, F(s) = {(fs//M)*L} Hz)")
     plt.xlabel("Zaman (saniye)")
     plt.ylabel("Genlik")
     plt.show()
@@ -105,9 +115,9 @@ def fs_orani_degisimi_M_L():
     L = 3
     oranli_veri = resample_poly(veri, L, M)  
     yeni_fs = fs * L // M #farklı bir fs değerine atarak yaptığımız oran işlemi
-    sd.play(oranli_veri, yeni_fs)
+    sd.play(oranli_veri, fs)
     sd.wait()
-    zaman_oranli = np.linspace(0, len(oranli_veri) / yeni_fs, num=len(oranli_veri))
+    zaman_oranli = np.linspace(0, len(oranli_veri) / fs, num=len(oranli_veri))
     plt.figure(figsize=(10, 4))
     plt.plot(zaman_oranli, oranli_veri)
     plt.title(f"Örnekleme Frekansı Orantılı Değişmiş (Örnek Sayısı: {len(oranli_veri)}, F(s) = {yeni_fs} Hz)")
@@ -135,9 +145,9 @@ while True:
     elif sayi == '2':
         azaltma()
     elif sayi == '3':
-        M_ile_azaltılmış()
+        M_ile_azaltilmis()
     elif sayi == '4':
-        ornek_arttırma_L()
+        ornek_arttirma_L()
     elif sayi == '5':
         fs_ile_arttirma()
     elif sayi == '6':
