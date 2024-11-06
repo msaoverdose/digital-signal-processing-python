@@ -30,8 +30,14 @@ def  azaltilmis():
       sd.play(azaltilmis_ornek, fs)
       sd.wait()
 
+      
+
       # Çizdirme
       time_downsampled = np.linspace(0, len(azaltilmis_ornek) / fs, num=len(azaltilmis_ornek))
+      
+      print(f"Örnekleme frekansı: {time_downsampled}")
+      print(f"Toplam örnek sayısı: {len(azaltilmis_ornek)}")
+      
       plt.figure(figsize=(10, 4))
       plt.plot(time_downsampled, azaltilmis_ornek)
       plt.title("Örnek Sayısı Azaltılmış Ses Dalga Formu")
@@ -83,19 +89,19 @@ def L_ile_ornek():
       plt.show()
 
 while True:
-    print("1) Orjinal Sesin Grafiğini çiz \n"
+    print("1) Orjinal Sesin Grafiğini çiz ve oynat \n"
           
-          "2) Örnek Azaltılmış Sesin Grafiği \n"
+          "2) Örnek Azaltılmış Sesin Grafiğini çiz ve oynat \n"
  
-          "3) Örneği  M ile azaltılmış Grafik \n"
+          "3) Örneği  M ile azaltılmış Grafiğini çiz ve oynat\n"
     
-          "4) Örnekleme frekansını değiştirmeden L tamsayısı ile örnek arttırılmış GrafiK \n"
+          "4) Örnekleme frekansını değiştirmeden L tamsayısı ile örnek arttırılmış Grafiğini çiz ve oynat \n"
           
-          "5) L ile Arttırılmış Sesin Grafiği \n"
+          "5) L ile Arttırılmış Sesin Grafiğini çiz ve oynat \n"
           
-          "6) Örnekleme frekansını değiştirmeden M ve L tamsayıları ile örnek oranı değişimi Grefiği \n"
+          "6) Örnekleme frekansını değiştirmeden M ve L tamsayıları ile örnek oranı değişimi Grafiğini çiz ve oynat \n"
          
-          "7)M ve L ile orantılı şekilde değişmiş Grafik \n"
+          "7)M ve L ile orantılı şekilde değişmiş Grafiğini çiz ve oynat \n"
         
           )
     
