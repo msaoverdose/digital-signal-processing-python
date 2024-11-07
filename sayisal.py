@@ -111,8 +111,8 @@ def ornek_orani_degisimi_M_L():
     plt.show()
 
 def fs_orani_degisimi_M_L():
-    M = 2
-    L = 3
+    M = 3
+    L = 4
     oranli_veri = resample_poly(veri, L, M)  
     yeni_fs = fs * L // M #farklı bir fs değerine atarak yaptığımız oran işlemi
     sd.play(oranli_veri, fs)
